@@ -28,6 +28,6 @@ app.listen(
   PORT,
   console.log(
     `eCommerce Server running in ${process.env.NODE_ENV} mode @PORT: ${PORT}`
-      .yellow.bold
+      .green.inverse.bold
   )
 );

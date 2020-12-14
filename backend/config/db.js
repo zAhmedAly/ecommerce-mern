@@ -7,10 +7,10 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
     console.log(
-      `Connected to eCommerce DB ${conn.connection.host}`.cyan.underline
+      `Connected to eCommerce DB ${conn.connection.host}`.green.inverse.bold
     );
   } catch (error) {
-    console.log(`ERROR: ${error.message}`.red.reverse);
+    console.log(`ERROR: ${error.message}`.red.underline.bold);
     process.exit(1);
   }
 };
