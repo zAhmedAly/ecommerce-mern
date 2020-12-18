@@ -13,7 +13,10 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             <LinkContainer to="/login">
-              <Nav.Link>Sign In</Nav.Link>
+              <Nav.Link>
+                <i className="fas fa-user"></i>
+                Sign In
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/register">
               <Nav.Link>Sign Up</Nav.Link>
