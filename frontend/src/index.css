@@ -1,4 +1,4 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 * {
   box-sizing: border-box;
@@ -28,7 +28,6 @@ h2 {
   margin: 0.1rem;
 }
 
-/* carousel */
 .carousel-item-next,
 .carousel-item-prev,
 .carousel-item.active {
