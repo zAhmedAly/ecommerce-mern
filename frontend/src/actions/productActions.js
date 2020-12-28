@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
@@ -6,7 +6,7 @@ import {
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_REQUEST,
   PRODUCT_DETAILS_SUCCESS,
-} from '../constants/productConstants';
+} from "../constants/productConstants";
 
 export const listProducts = () => async (dispatch) => {
   try {
@@ -14,19 +14,19 @@ export const listProducts = () => async (dispatch) => {
       type: PRODUCT_LIST_REQUEST,
     });
 
-    const { data } = await axios.get('/api/products');
+    const { data } = await axios.get("/api/products");
 
     setTimeout(() => {
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
         payload: data,
       });
-    }, 2000);
+    }, 1000);
   } catch (error) {
-    console.log('error = ', error);
-    console.log('error.response.data = ', error.response.data);
-    console.log('error.response.data.message = ', error.response.data.message);
-    console.log('error.message = ', error.message);
+    console.log("error = ", error);
+    console.log("error.response.data = ", error.response.data);
+    console.log("error.response.data.message = ", error.response.data.message);
+    console.log("error.message = ", error.message);
 
     dispatch({
       type: PRODUCT_LIST_FAIL,
@@ -51,12 +51,12 @@ export const listProductDetails = (id) => async (dispatch) => {
         type: PRODUCT_DETAILS_SUCCESS,
         payload: data,
       });
-    }, 2000);
+    }, 1000);
   } catch (error) {
-    console.log('error = ', error);
-    console.log('error.response.data = ', error.response.data);
-    console.log('error.response.data.message = ', error.response.data.message);
-    console.log('error.message = ', error.message);
+    console.log("error = ", error);
+    console.log("error.response.data = ", error.response.data);
+    console.log("error.response.data.message = ", error.response.data.message);
+    console.log("error.message = ", error.message);
 
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
