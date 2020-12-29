@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Row, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 
 const Loader = () => {
   return (
