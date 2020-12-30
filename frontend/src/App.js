@@ -21,7 +21,7 @@ function App() {
             <Route path="/login" component={LoginScreen} />
             <Route path="/register" component={RegisterScreen} />
             <Route path="/product/:id" component={ProductScreen} />
-            <Route path="/cart" component={CartScreen} />
+            <Route path="/cart/:id?" component={CartScreen} />
             <Route exact path="/" component={HomeScreen} />
           </Switch>
         </Container>
