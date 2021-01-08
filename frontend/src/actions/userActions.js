@@ -4,6 +4,7 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -29,6 +30,8 @@ export const login = (email, password) => async (dispatch) => {
         payload: data,
       });
     }, 1000);
+
+    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     console.log("error = ", error);
     console.log("error.response.data = ", error.response.data);
@@ -43,4 +46,12 @@ export const login = (email, password) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const logout = () => async (dispatch) => {
+  localStorage.removeItem("userInfo");
+
+  dispatch({
+    type: USER_LOGOUT,
+  });
 };
