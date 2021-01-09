@@ -32,7 +32,7 @@ const LoginScreen = ({ location, history }) => {
     <FormContainer>
       <h1>Sign In</h1>
       {error && <Message variant="danger">{error}</Message>}
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
@@ -53,10 +53,13 @@ const LoginScreen = ({ location, history }) => {
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
-        <Button type="submit" variant="primary">
-          Sign In
-        </Button>
+        {loading ? (
+          <Loader />
+        ) : (
+          <Button type="submit" variant="primary" disabled={loading}>
+            Sign In
+          </Button>
+        )}
       </Form>
 
       <Row className="py-3">
