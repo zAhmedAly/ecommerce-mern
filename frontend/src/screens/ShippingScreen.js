@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
-import { useLayoutEffect } from "react";
 import { useSelector } from "react-redux";
 
 const ShippingScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   useEffect(() => {
-    if (!userInfo) {
-      history.push("/login?redirect=shipping");
+    if (userInfo && cartItems) {
+      history.push("/shipping");
+    } else {
+      history.push("/login?redirect=cart");
     }
-  }, [history, userInfo]);
+  }, [history, userInfo, cartItems]);
 
   return <div>Shipping</div>;
 };

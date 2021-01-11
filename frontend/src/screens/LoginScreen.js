@@ -16,13 +16,21 @@ const LoginScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
+  console.log(" LOGIN SCREEN REDIRECT = ", redirect);
   useEffect(() => {
     if (userInfo) {
-      history.push(redirect);
+      if (cartItems) {
+        history.push(redirect);
+      } else {
+        history.push("/");
+      }
     }
-  }, [history, userInfo, redirect]);
+  }, [history, userInfo, cartItems, redirect]);
 
   const submitHandler = (e) => {
     e.preventDefault();
