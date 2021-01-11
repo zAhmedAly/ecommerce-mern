@@ -38,69 +38,94 @@ const CartScreen = ({ match, location, history }) => {
         <h1>Shopping Cart</h1>
       </Row>
       <Row>
-        <Col md={9} className="pb-3">
+        <Col md={7} className="pb-3">
           {cartItems.length === 0 ? (
             <Message>
               Your cart is empty <Link to="/">Go Back</Link>
             </Message>
           ) : (
-            <ListGroup>
-              {cartItems.map((item) => (
-                <ListGroup.Item key={item.product}>
-                  <Row>
-                    <Col md={2} style={{ margin: "auto" }}>
-                      <Image src={item.image} alt={item.name} fluid rounded />
-                    </Col>
-                    <Col md={3} style={{ margin: "auto" }}>
-                      <Link to={`/product/${item.product}`}>{item.name}</Link>
-                    </Col>
-                    <Col md={2} style={{ margin: "auto" }}>
-                      ${item.price}
-                    </Col>
-                    <Col md={2} style={{ margin: "auto" }}>
-                      <Form.Control
-                        as="select"
-                        value={item.qty}
-                        onChange={(e) =>
-                          dispatch(
-                            addToCart(item.product, Number(e.target.value))
-                          )
-                        }
-                      >
-                        {[...Array(item.countInStock).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
-                          </option>
-                        ))}
-                      </Form.Control>
-                    </Col>
-                    <Col md={2} style={{ margin: "auto" }}>
-                      <Button
-                        type="button"
-                        variant="light"
-                        //   onClick={() => removeFromCartHandler(item.product)}
-                      >
-                        <i className="fas fa-trash"></i>
-                      </Button>
-                    </Col>
-                  </Row>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
+            <>
+              <ListGroup>
+                {cartItems.map((item) => (
+                  <ListGroup.Item key={item.product}>
+                    <Row>
+                      <Col md={2} style={{ margin: "auto" }}>
+                        <Image src={item.image} alt={item.name} fluid rounded />
+                      </Col>
+                      <Col md={10}>
+                        <Row className="mb-3">
+                          <Col style={{ margin: "auto" }}>
+                            <Link to={`/product/${item.product}`}>
+                              {item.name}
+                            </Link>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col
+                            sm={6}
+                            className="mb-2"
+                            style={{ margin: "auto" }}
+                          >
+                            Price: ${item.price}
+                          </Col>
+                          <Col>
+                            <Row>
+                              <Col style={{ margin: "auto" }}>
+                                <Form.Control
+                                  as="select"
+                                  value={item.qty}
+                                  onChange={(e) =>
+                                    dispatch(
+                                      addToCart(
+                                        item.product,
+                                        Number(e.target.value)
+                                      )
+                                    )
+                                  }
+                                >
+                                  {[...Array(item.countInStock).keys()].map(
+                                    (x) => (
+                                      <option key={x + 1} value={x + 1}>
+                                        {x + 1}
+                                      </option>
+                                    )
+                                  )}
+                                </Form.Control>
+                              </Col>
+                              <Col
+                                className="d-flex justify-content-center"
+                                style={{ margin: "auto" }}
+                              >
+                                <Button
+                                  type="button"
+                                  variant="light"
+                                  //   onClick={() => removeFromCartHandler(item.product)}
+                                >
+                                  <i className="fas fa-trash"></i>
+                                </Button>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            </>
           )}
         </Col>
-        <Col md={3} style={{ margin: "0 auto" }}>
+        <Col md={5} style={{ margin: "0 auto" }}>
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>
                   Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                  ) items
+                  ) items: $
+                  {cartItems
+                    .reduce((acc, item) => acc + item.qty * item.price, 0)
+                    .toFixed(2)}
                 </h2>
-                $
-                {cartItems
-                  .reduce((acc, item) => acc + item.qty * item.price, 0)
-                  .toFixed(2)}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
@@ -109,7 +134,7 @@ const CartScreen = ({ match, location, history }) => {
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}
                 >
-                  Checkout
+                  Proceed to Checkout
                 </Button>
               </ListGroup.Item>
             </ListGroup>
