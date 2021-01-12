@@ -38,6 +38,7 @@ const CartScreen = ({ match, location, history }) => {
         <h1>Shopping Cart</h1>
       </Row>
       <Row>
+        <Col md={1}></Col>
         <Col md={7} className="pb-3">
           {cartItems.length === 0 ? (
             <Message>
@@ -53,13 +54,29 @@ const CartScreen = ({ match, location, history }) => {
                         <Image src={item.image} alt={item.name} fluid rounded />
                       </Col>
                       <Col md={10}>
-                        <Row className="mb-3">
+                        <Row className="my-2">
                           <Col style={{ margin: "auto" }}>
-                            <Link to={`/product/${item.product}`}>
-                              {item.name}
-                            </Link>
+                            <span>
+                              <strong>
+                                <Link
+                                  style={{ color: "darkblue" }}
+                                  to={`/product/${item.product}`}
+                                >
+                                  {item.name}
+                                </Link>
+                              </strong>
+                            </span>
                           </Col>
                         </Row>
+                        {item.countInStock < 5 && (
+                          <Row className="my-2">
+                            <Col>
+                              <span style={{ color: "red" }}>
+                                Only {item.countInStock} in stock - order soon{" "}
+                              </span>
+                            </Col>
+                          </Row>
+                        )}
                         <Row>
                           <Col
                             sm={6}
@@ -115,22 +132,25 @@ const CartScreen = ({ match, location, history }) => {
             </>
           )}
         </Col>
-        <Col md={5} style={{ margin: "0 auto" }}>
+        <Col md={3} style={{ margin: "0 auto" }}>
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>
-                  Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                  ) items: $
-                  {cartItems
-                    .reduce((acc, item) => acc + item.qty * item.price, 0)
-                    .toFixed(2)}
-                </h2>
+                <span>
+                  <strong>
+                    Subtotal (
+                    {cartItems.reduce((acc, item) => acc + item.qty, 0)}) items:
+                    $
+                    {cartItems
+                      .reduce((acc, item) => acc + item.qty * item.price, 0)
+                      .toFixed(2)}
+                  </strong>
+                </span>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="btn-block"
+                  className="btn-block btn-sm"
                   disabled={cartItems.length === 0}
                   onClick={checkoutHandler}
                 >
