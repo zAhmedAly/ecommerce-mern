@@ -160,6 +160,7 @@ const CartScreen = ({ match, location, history }) => {
             </ListGroup>
           </Card>
         </Col>
+        <Col md={1}></Col>
       </Row>
     </>
   );

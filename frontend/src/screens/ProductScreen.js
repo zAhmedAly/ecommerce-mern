@@ -39,10 +39,15 @@ const ProductScreen = ({ match, history }) => {
         <>
           <Row>
             <Col md={4}>
-              <Image src={product.image} alt={product.name} fluid />
+              <ListGroup>
+                <ListGroup.Item>
+                  <Image src={product.image} alt={product.name} fluid />
+                </ListGroup.Item>
+              </ListGroup>
             </Col>
-            <Col md={5}>
-              <ListGroup variant="flush">
+
+            <Col md={5} className="mb-2">
+              <ListGroup>
                 <ListGroup.Item>
                   <h3>{product.name}</h3>
                 </ListGroup.Item>
@@ -60,7 +65,7 @@ const ProductScreen = ({ match, history }) => {
               </ListGroup>
             </Col>
             <Col md={3}>
-              <ListGroup variant="flush">
+              <ListGroup>
                 <ListGroup.Item>
                   <Row>
                     <Col>Price:</Col>
