@@ -42,7 +42,7 @@ const CartScreen = ({ match, location, history }) => {
         <Col md={7} className="pb-3">
           {cartItems.length === 0 ? (
             <Message>
-              Your cart is empty <Link to="/">Go Back</Link>
+              Your cart is empty <Link to="/"> Go Back</Link>
             </Message>
           ) : (
             <>
